@@ -1,0 +1,40 @@
+server:
+  port: 8080
+spring:
+  jpa:
+    show-sql: true
+  datasource:
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #5.1.22 版本采用下面这种方式
+    driver-class-name: com.mysql.jdbc.Driver
+    #俩个系统不同的数据库配置
+    druid:
+      enterprise:
+        url: jdbc:mysql://localhost:3306/tenant_manager?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=America/New_York
+        username: root
+        password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    #连接池配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+# Logging configuration
+logging:
+  level:
+    org.springframework:
+      data: DEBUG
+      security: DEBUG
