@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.model.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="userName" property="userName" jdbcType="VARCHAR"/>
+        <result column="passWord" property="passWord" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" javaType="INT"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, userName, passWord, user_sex, nick_name
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM users
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.example.demo.model.User">
+        INSERT INTO
+        users
+        (userName,passWord,user_sex)
+        VALUES
+        (#{userName}, #{passWord}, #{userSex})
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.model.User">
+        UPDATE
+        users
+        SET
+        <if test="userName != null">userName = #{userName},</if>
+        <if test="passWord != null">passWord = #{passWord},</if>
+        nick_name = #{nickName}
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM
+        users
+        WHERE
+        id =#{id}
+    </delete>
+
+
+    <sql id="order_Column_List">
+        orders.id, user_id as userId, money
+    </sql>
+
+    <sql id="orderdetail_Column_List">
+        orderdetail.id as item_id, orderdetail.order_id ,orderdetail.goods_name
+    </sql>
+
+
+    <!--!&#45;&#45; 订单查询关联用户的resultMap-->
+    <!--将整个查询的结果映射到com.iot.mybatis.po.Orders中-->
+    <resultMap type="com.example.demo.model.Order" id="OrdersUserResultMap">
+        <!-- 配置映射的订单信息 -->
+        <!-- id：指定查询列中的唯一标识，订单信息的中的唯 一标识，如果有多个列组成唯一标识，配置多个id
+            column：订单信息的唯一标识列
+            property：订单信息的唯一标识列所映射到Orders中哪个属性
+          -->
+        <id column="id" property="id"/>
+        <result column="userId" property="userId"/>
+        <result column="money" property="money"/>
+
+        <!-- 配置映射的关联的用户信息 -->
+        <!-- association：用于映射关联查询单个对象的信息
+        property：要将关联查询的用户信息映射到Orders中哪个属性
+         -->
+        <association property="user" javaType="com.example.demo.model.User">
+            <!-- id：关联查询用户的唯 一标识
+            column：指定唯 一标识用户信息的列
+            javaType：映射到user的哪个属性
+             -->
+            <id column="userId" property="id"/>
+            <result column="userName" property="userName"/>
+            <result column="passWord" property="passWord"/>
+            <result column="user_sex" property="userSex"/>
+            <result column="nick_name" property="nickName"/>
+        </association>
+    </resultMap>
+
+    <!--订单查询详情-->
+    <resultMap type="com.example.demo.model.Order" id="OrdersDetailUserResultMap" extends="OrdersUserResultMap">
+        <collection property="orderdetails" ofType="com.example.demo.model.Orderdetail">
+            <!-- id：订单明细唯 一标识
+            property:要将订单明细的唯 一标识 映射到com.iot.mybatis.po.Orderdetail的哪个属性
+              -->
+            <id column="item_id" property="id"/>
+            <result column="order_id" property="orderId"/>
+            <result column="goods_name" property="goodsName"/>
+        </collection>
+    </resultMap>
+
+
+
+
+    <!-- 查询订单关联查询用户信息resultType -->
+    <select id="findOrdersUser" resultType="com.example.demo.model.CustomOrder">
+        SELECT
+        <include refid="order_Column_List"/>,
+        users.username
+        FROM
+        orders,
+        users
+        WHERE orders.user_id = users.id
+    </select>
+
+    <!-- 查询订单关联查询用户信息 resultMap -->
+    <select id="findOrdersUserResultMap" resultMap="OrdersUserResultMap">
+        SELECT
+        <include refid="order_Column_List"/>,
+        users.username
+        FROM
+        orders,
+        users
+        WHERE orders.user_id = users.id
+    </select>
+
+
+
+
+
+
+
+    <!-- 查询订单关联查询用户信息和订单明细resultType -->
+    <select id="findOrderdetails" resultType="com.example.demo.model.CustomOrder">
+        SELECT
+        <include refid="order_Column_List"/>,
+        <include refid="orderdetail_Column_List"/>,
+        users.username
+        FROM
+        orders,
+        users,
+        orderdetail
+        WHERE orders.user_id = users.id AND orderdetail.order_id=orders.id
+    </select>
+
+    <!-- 查询订单关联查询用户信息和订单明细 -->
+    <select id="findOrderdetailsresultMap" resultMap="OrdersDetailUserResultMap">
+        SELECT
+        <include refid="order_Column_List"/>,
+        <include refid="orderdetail_Column_List"/>,
+        users.username
+        FROM
+        orders,
+        users,
+        orderdetail
+        WHERE orders.user_id = users.id AND orderdetail.order_id=orders.id
+    </select>
+
+</mapper>
