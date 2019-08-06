@@ -1,0 +1,78 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8080
+  servlet:
+    context-path: /
+
+
+spring:
+  jpa:
+    show-sql: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/town?allowMultiQueries=true&useUnicode=true&useSSL=false
+      username: root
+      password: root
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+      connection-init-sqls: ["SET NAMES utf8mb4"]
+  jackson:
+    #    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: true
+    time-zone: GMT+8
+
+# 打印SQL参数
+logging:
+  level:
+    org:
+      hibernate:
+        #        SQL: DEBUG
+        engine:
+          QueryParameter: DEBUG
+        query:
+          HQLQueryPlan: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+#              BasicExtractor: TRACE
+
+framework:
+  redis:
+    open: false  # 是否开启redis缓存  true开启   false关闭
+  shiro:
+    redis: false # true表示shiro session存到redis里，需要开启redis，才会生效【分布式场景】
+
+
+#前端页面地址
+front:
+  url: "http://localhost:3000"
