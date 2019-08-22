@@ -1,6 +1,7 @@
 package com.example.demo.RedissonLock;
 
 import com.example.demo.dao.GoodDAO;
+import com.example.demo.entity.Good;
 import com.example.demo.service.GoodService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,16 @@ public class RedissonLockTest {
         return null;
     }
 
+    @RequestMapping("/updateGoodsNum3")
+    public Object updateGoods3() {
+        int goodsId = 1;
+        int reduceNum = 5;
+        Good good = goodDAO.findById(1).get();
+        synchronized (this) {
+            goodService.reduceGoodNum3(goodsId, reduceNum);
+        }
+        return null;
+    }
 
     @RequestMapping("/Redisson")
     public Object test() {

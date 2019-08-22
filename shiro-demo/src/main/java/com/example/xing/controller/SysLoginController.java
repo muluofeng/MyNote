@@ -37,7 +37,7 @@ public class SysLoginController {
      * 登录
      */
     @ResponseBody
-    @RequestMapping(value = "/sys/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/sys/login")
     public R login(String userName, String password, String captcha) {
 //        String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
 //        if (!captcha.equalsIgnoreCase(kaptcha)) {

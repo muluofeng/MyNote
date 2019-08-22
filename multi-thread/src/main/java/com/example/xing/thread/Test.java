@@ -28,7 +28,7 @@ public class Test {
 
         System.out.println("--------测试join");
 
-        for(int i=0;i<10000;i++){
+        for(int i=0;i<10;i++){
             System.out.println("主线程"+i);
             if(i>10){
 //                thread4.join();
@@ -70,7 +70,7 @@ class MyCallable implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         int i = 0;
-        for (; i < 1000000; i++) {
+        for (; i < 10; i++) {
             System.out.println(Thread.currentThread().getName() + "--" + i);
         }
         return i;

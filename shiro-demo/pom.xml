@@ -22,6 +22,8 @@
         <commons.codec.version>1.11</commons.codec.version>
         <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
         <druid.version>1.1.10</druid.version>
+        <fastjson.version>1.2.47</fastjson.version>
+
     </properties>
 
 
@@ -122,7 +124,11 @@
             <version>${druid.version}</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
 
     </dependencies>
 

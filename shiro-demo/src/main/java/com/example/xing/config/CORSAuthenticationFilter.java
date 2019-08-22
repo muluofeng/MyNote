@@ -1,6 +1,6 @@
 package com.example.xing.config;
 
-import com.alibaba.druid.support.json.JSONUtils;
+import com.alibaba.fastjson.JSON;
 import com.example.xing.common.R;
 
 import org.apache.shiro.web.filter.AccessControlFilter;
@@ -57,8 +57,7 @@ public class CORSAuthenticationFilter extends AccessControlFilter {
 
         R r = R.ok();
         r.setCode(HttpServletResponse.SC_UNAUTHORIZED);
-
-        writer.write(JSONUtils.toJSONString(r));
+        writer.write(JSON.toJSONString(r));
         writer.close();
         return false;
     }
