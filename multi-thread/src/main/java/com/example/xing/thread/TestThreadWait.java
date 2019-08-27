@@ -43,6 +43,7 @@ public class TestThreadWait {
         myThread1.start();
         myThread2.start();
         myThread2.join();
+        System.out.println("----");
         myThread1.join();
         System.out.println("-主线程-");
 

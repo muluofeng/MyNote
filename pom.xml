@@ -21,12 +21,15 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>jwt-spring-security-demo</module>
         <module>multi-tenant-demo</module>
         <module>springboot-demo</module>
         <module>hibernate</module>
         <module>rocketMQ</module>
         <module>workflow</module>
+        <module>guava-demo</module>
+        <module>shiro-demo</module>
+        <module>jwt-spring-security-demo</module>
+
     </modules>
 
 </project>

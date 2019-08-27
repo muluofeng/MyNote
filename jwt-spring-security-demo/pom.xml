@@ -12,10 +12,7 @@
 	<groupId>com.example.xing</groupId>
 	<artifactId>jwt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>../guava-demo</module>
-        <module>../shiro-demo</module>
-    </modules>
+
     <packaging>pom</packaging>
 
 	<name>jwt</name>
