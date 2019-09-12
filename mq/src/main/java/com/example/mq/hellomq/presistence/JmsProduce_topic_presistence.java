@@ -16,7 +16,9 @@ import javax.jms.Topic;
  * @Created by 2019-08-26 11:53.
  */
 public class JmsProduce_topic_presistence {
-    public static final String ACTIVEMQ_URL = "tcp://127.0.0.1:32768";
+//    public static final String ACTIVEMQ_URL = "tcp://127.0.0.1:32768";
+    public static final String ACTIVEMQ_URL = "tcp://192.168.2.109:61616";
+
     public static final String TOPIC_NAME = "TOPIC_NAME_PRESISTENCE";
 
     public static void main(String[] args) throws JMSException {

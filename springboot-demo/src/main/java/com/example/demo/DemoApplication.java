@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.proxy.Blue;
+import com.example.demo.proxy.Cat;
+import com.example.demo.proxy.Yellow;
 import com.example.xing.testImportBeanDefinitionRegistrar.annotation.MyScanner;
 
 import org.redisson.Redisson;
@@ -10,10 +13,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Conditional;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.io.IOException;
@@ -30,11 +39,36 @@ import java.io.IOException;
         SecurityAutoConfiguration.class})
 
 @MyScanner
+
+@ComponentScan(includeFilters ={
+        @ComponentScan.Filter(type = FilterType.ANNOTATION,classes = {Controller.class}),
+        @ComponentScan.Filter(type = FilterType.CUSTOM,classes = {MyFilterType.class}) //自定义filter
+
+})
 //测试自己的注解类
+
+//使用@Import 导入类
+@Import({Cat.class,MyImportSelector.class,MyImportBeanDefinitionRegistrar.class})
 public class DemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(DemoApplication.class, args);
+//        Cat cat = (Cat) context.getBean("conditionBean");
+//        System.out.println(cat.getName());
+
+        Cat cat = (Cat) context.getBean(Cat.class);
+        System.out.println(cat.getName());
+
+        Blue blue = (Blue) context.getBean(Blue.class);
+        System.out.println(blue.name);
+
+
+        Yellow yellow = (Yellow) context.getBean(Yellow.class);
+        System.out.println(yellow.name);
+
+
+        Object b1 = context.getBean("myFactoryBean");  //获取factorybean 实际注册的bean
+        Object b2 = context.getBean("&myFactoryBean"); //获取factorybean 本身
     }
 
     @Bean
@@ -55,7 +89,18 @@ public class DemoApplication {
     }
 
 
+    @Bean("conditionBean")
+    @Conditional(MyCondition.class)
+    public Cat cat(){
+       return new Cat("xx",11);
+    }
 
+
+
+    @Bean
+    public MyFactoryBean myFactoryBean(){
+       return  new MyFactoryBean();
+    }
 
 
 }
