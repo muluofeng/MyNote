@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.aop.MyComponent;
+import com.example.demo.pojo.Dog;
+import com.example.demo.pojo.Project;
+import com.example.demo.pojo.ProjectTwo;
 import com.example.demo.proxy.Blue;
 import com.example.demo.proxy.Cat;
 import com.example.demo.proxy.Yellow;
@@ -40,15 +44,17 @@ import java.io.IOException;
 
 @MyScanner
 
-@ComponentScan(includeFilters ={
-        @ComponentScan.Filter(type = FilterType.ANNOTATION,classes = {Controller.class}),
-        @ComponentScan.Filter(type = FilterType.CUSTOM,classes = {MyFilterType.class}) //自定义filter
+@ComponentScan(includeFilters = {
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Controller.class}),
+        @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {MyFilterType.class}) //自定义filter
 
 })
 //测试自己的注解类
 
 //使用@Import 导入类
-@Import({Cat.class,MyImportSelector.class,MyImportBeanDefinitionRegistrar.class})
+@Import({Cat.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
+
+//@EnableAspectJAutoProxy
 public class DemoApplication {
 
     public static void main(String[] args) {
@@ -69,6 +75,26 @@ public class DemoApplication {
 
         Object b1 = context.getBean("myFactoryBean");  //获取factorybean 实际注册的bean
         Object b2 = context.getBean("&myFactoryBean"); //获取factorybean 本身
+
+        //propertySource 测试
+        Dog dog = (Dog) context.getBean(Dog.class);
+        System.out.println(dog.getName());
+
+
+        Project project = (Project) context.getBean(Project.class);
+        project.sayName();
+        project.sayName2();
+
+
+        ProjectTwo projectTwo = (ProjectTwo) context.getBean(ProjectTwo.class);
+        projectTwo.sayName();
+
+
+        //切面测试
+        MyComponent myComponent = (MyComponent) context.getBean(MyComponent.class);
+        myComponent.test();
+
+
     }
 
     @Bean
@@ -80,7 +106,7 @@ public class DemoApplication {
         redisson = Redisson.create(config);
 
         try {
-            System.out.println("redisson----"+redisson.getConfig().toJSON().toString());
+            System.out.println("redisson----" + redisson.getConfig().toJSON().toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -91,15 +117,14 @@ public class DemoApplication {
 
     @Bean("conditionBean")
     @Conditional(MyCondition.class)
-    public Cat cat(){
-       return new Cat("xx",11);
+    public Cat cat() {
+        return new Cat("xx", 11);
     }
 
 
-
     @Bean
-    public MyFactoryBean myFactoryBean(){
-       return  new MyFactoryBean();
+    public MyFactoryBean myFactoryBean() {
+        return new MyFactoryBean();
     }
 
 

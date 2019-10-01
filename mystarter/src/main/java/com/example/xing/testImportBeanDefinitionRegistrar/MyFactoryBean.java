@@ -20,6 +20,9 @@ public class MyFactoryBean implements FactoryBean {
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("调用之前...");
                 Select annotation = AnnotationUtils.findAnnotation(method, Select.class);
+                if(annotation==null){
+                    return new Object();
+                }
                 System.out.println("获取注解上的值" + annotation.value().toString());
                 System.out.println("调用之后...");
                 return new Object();
