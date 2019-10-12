@@ -32,7 +32,7 @@ public interface UserMapper {
 
     List<Order> findOrderdetailsresultMap();
 
-    List<Order> test();
+//    List<Order> test();
 
 
 

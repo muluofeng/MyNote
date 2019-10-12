@@ -1,0 +1,43 @@
+#
+#mybatis.type-aliases-package=com.example.model
+#
+#mybatis.config-location=classpath:mybatis/mybatis-config.xml
+#mybatis.mapper-locations=classpath:mybatis/mapper/*.xml
+#
+#spring.datasource.url=jdbc:mysql://localhost:3306/mybatis-demo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+#spring.datasource.username=root
+#spring.datasource.password=root
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8080
+  servlet:
+    context-path: /
+
+
+spring:
+  kafka:     # 指定kafka broker 代理地址，可以多个
+    bootstrap-servers: localhost:9092
+    template:    # 指定默认topic id
+      default-topic: producer
+#    listener:   # 指定listener 容器中的线程数，用于提高并发量
+#      concurrency: 5
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: myGroup # 指定默认消费者group id
+#      client-id: 200    #ID在发出请求时传递给服务器;用于服务器端日志记录
+#      max-poll-records: 200
+#      auto-offset-reset: latest ##Kafka中没有初始偏移或如果当前偏移在服务器上不再存在时,默认区最新 ，有三个选项 【latest, earliest, none】
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      batch-size: 1000 # 每次批量发送消息的字节数
+      retries: 3   #发送失败重试次数
+      client-id: 200 #ID在发出请求时传递给服务器;用于服务器端日志记录

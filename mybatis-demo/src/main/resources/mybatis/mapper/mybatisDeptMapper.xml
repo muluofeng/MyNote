@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.MybatisDeptMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.model.MybatisDept">
+        <id column="id" property="id" />
+        <result column="deptname" property="deptname" />
+    </resultMap>
+
+
+    <resultMap id="BaseResultMapList" type="com.example.demo.model.MybatisDept">
+        <id column="id" property="id" />
+        <result column="deptname" property="deptname" />
+
+        <!--    使用 collection 定义列表 ，sql 需要查询出对应的数据   -->
+        <collection property="user" ofType="com.example.demo.model.MybatisUser">
+            <id property="id" column="id" />
+            <result property="name" column="name" />
+        </collection>
+    </resultMap>
+
+
+    <resultMap id="BaseResultMapCollection" type="com.example.demo.model.MybatisDept">
+        <id column="id" property="id" />
+        <result column="deptname" property="deptname" />
+        <!--    使用 collection 定义列表 ， sql 不需要查询出对应的数据  -->
+        <collection property="user" column="id"
+            select="com.example.demo.mapper.MybatisUserMapper.findByDeptId"></collection>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,deptname
+    </sql>
+
+    <select id="findById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from mybatis_dept
+        where id=#{id,jdbcType=INTEGER}
+    </select>
+
+    <!--    查询部门下的用户列表 使用 collection-->
+    <select id="findDeptCollection" resultMap="BaseResultMapList">
+        select
+        d.id,d.deptname,u.id,u.name
+        from mybatis_user u
+        left join mybatis_dept d on u.dept_id = d.id
+        where u.dept_id=#{id,jdbcType=INTEGER}
+    </select>
+
+    <!-- 查询部门下的用户列表 使用 collection  分步查询 -->
+    <select id="findDeptCollectionByStep" resultMap="BaseResultMapCollection">
+        select
+        <include refid="Base_Column_List"></include>
+        from mybatis_dept
+        where id=#{id,jdbcType=INTEGER}
+    </select>
+</mapper>
