@@ -50,7 +50,7 @@ public class SysMenuController {
         Object roleMenuTree = sysMenuService.getRoleMenuTree(userId);
 
 //         sysMenuService.getTreeMenu();
-         return roleMenuTree;
+        return roleMenuTree;
     }
 
     /**

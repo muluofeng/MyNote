@@ -16,15 +16,15 @@ public class Executortest {
         ExecutorService executor = Executors.newWorkStealingPool();
 
         List<Callable<String>> callables = Arrays.asList(
-                () ->{
+                () -> {
                     TimeUnit.SECONDS.sleep(2);
-                   return "task1";
-                } ,
+                    return "task1";
+                },
                 () -> {
                     TimeUnit.SECONDS.sleep(1);
                     return "task2";
                 },
-                () ->{
+                () -> {
 //                    TimeUnit.SECONDS.sleep(1);
                     return "task3";
                 });
@@ -34,13 +34,11 @@ public class Executortest {
                 .map(future -> {
                     try {
                         return future.get();
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         throw new IllegalStateException(e);
                     }
                 })
                 .forEach(System.out::println);
-
 
 
     }

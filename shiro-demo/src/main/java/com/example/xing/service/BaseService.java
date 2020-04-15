@@ -68,6 +68,7 @@ public interface BaseService<T, ID extends Serializable, DAO extends BaseReposit
 
     /**
      * 排序 查询
+     *
      * @param sort
      * @return
      */
@@ -185,6 +186,7 @@ public interface BaseService<T, ID extends Serializable, DAO extends BaseReposit
 
     /**
      * 获取JPAQueryFactory
+     *
      * @return
      */
     JPAQueryFactory getQueryFactory();

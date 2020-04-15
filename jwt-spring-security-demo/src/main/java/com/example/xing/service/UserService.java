@@ -2,6 +2,7 @@ package com.example.xing.service;
 
 import com.example.xing.dao.UserDAO;
 import com.example.xing.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,10 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private UserDAO userDAO;
-     public User findByName(String name){
-         return userDAO.findByUsername(name);
-     }
+
+    public User findByName(String name) {
+        return userDAO.findByUsername(name);
+    }
 
 
 //    public static void main(String[] args) {

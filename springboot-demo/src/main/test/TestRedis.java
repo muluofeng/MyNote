@@ -1,4 +1,4 @@
-import com.example.demo.DemoApplication;
+import com.example.demo.Application;
 import com.example.demo.service.AccountServiceTestCache;
 
 import org.junit.Test;
@@ -82,7 +82,7 @@ public class TestRedis {
 
         //4. 存储字符串
         String s = "测试数据";
-        redisTemplate.opsForValue().set("name",s);
+        redisTemplate.opsForValue().set("name", s);
         System.out.println(redisTemplate.opsForValue().get("name"));
 
         //5.zset

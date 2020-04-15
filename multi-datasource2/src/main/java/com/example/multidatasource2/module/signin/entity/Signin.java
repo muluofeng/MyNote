@@ -25,29 +25,29 @@ import lombok.Setter;
 @Entity
 @Table(name = "signin")
 public class Signin implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 主键
-	 */
-	@Id
+    /**
+     * 主键
+     */
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	/**
-	 * 用户id
-	 */
-	@Column(name = "userid")
-	private Integer userid;
-	/**
-	 * 签到时间
-	 */
-	@Column(name = "ctime")
-	private Date ctime;
-	/**
-	 * 签到当前天：比如20150907
-	 */
-	@Column(name = "date")
-	private String date;
+    private Long id;
+    /**
+     * 用户id
+     */
+    @Column(name = "userid")
+    private Integer userid;
+    /**
+     * 签到时间
+     */
+    @Column(name = "ctime")
+    private Date ctime;
+    /**
+     * 签到当前天：比如20150907
+     */
+    @Column(name = "date")
+    private String date;
 
 
 }

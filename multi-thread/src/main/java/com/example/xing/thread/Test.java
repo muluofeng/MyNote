@@ -23,14 +23,14 @@ public class Test {
         thread3.start();
         thread4.start();
 
-        System.out.println("futureTask.get--"+futureTask.get());
+        System.out.println("futureTask.get--" + futureTask.get());
 
 
         System.out.println("--------测试join");
 
-        for(int i=0;i<10;i++){
-            System.out.println("主线程"+i);
-            if(i>10){
+        for (int i = 0; i < 10; i++) {
+            System.out.println("主线程" + i);
+            if (i > 10) {
 //                thread4.join();
             }
         }
@@ -51,7 +51,7 @@ class MyThread extends Thread {
 }
 
 /**
- *  implements Runnable
+ * implements Runnable
  */
 class MyRunable implements Runnable {
 

@@ -23,11 +23,11 @@ public class DemoController {
 
 
     @GetMapping("/hello")
-    String hello(){
+    String hello() {
 
         String pid = runtimeService.startProcessInstanceByKey("myProcess_1").getId();
 
         Task task = taskService.createTaskQuery().processInstanceId(pid).singleResult();
-        return "hello world spring boot...."+task.getId();
+        return "hello world spring boot...." + task.getId();
     }
 };

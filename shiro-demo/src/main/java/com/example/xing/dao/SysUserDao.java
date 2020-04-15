@@ -9,12 +9,12 @@ import java.util.List;
 
 /**
  * 系统用户
- * 
+ *
  * @author chenxing
  * @email mail@chenxing.vip
  * @date 2019-01-01 01:57:06
  */
-public interface SysUserDao extends BaseRepository<SysUser,Long> {
+public interface SysUserDao extends BaseRepository<SysUser, Long> {
 
     /**
      * 查询用户所有权限

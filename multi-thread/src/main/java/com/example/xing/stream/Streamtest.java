@@ -80,7 +80,7 @@ public class Streamtest {
         System.out.println(statistics.getMax());
         System.out.println(statistics.getCount());
 
-        IntStream.range(0, 100).mapToObj(i->(Integer)i).filter(i -> i > 90).distinct().forEach((i)-> System.out.println(i));
+        IntStream.range(0, 100).mapToObj(i -> (Integer) i).filter(i -> i > 90).distinct().forEach((i) -> System.out.println(i));
 
     }
 

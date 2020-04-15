@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.AccountDAO;
 import com.example.demo.entity.Account;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ public class DemoService {
         account1.setName("test1");
         dao.save(account1);
 
-        if (true)  {
+        if (true) {
             throw new RuntimeException("异常");
 
         }
@@ -50,7 +51,6 @@ public class DemoService {
         account.setName("test2");
         accountService.addNEVER(account);
     }
-
 
 
 }

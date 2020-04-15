@@ -2,6 +2,7 @@ package com.example.xing.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +16,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 /**
@@ -34,12 +36,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Value("${jwt.tokenHead}")
     private String tokenHead;
     @Autowired
-    private JwtTokenUtil          jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        String authHeader=request.getHeader(header);
-        if(authHeader!=null&&authHeader.startsWith(tokenHead)){
+        String authHeader = request.getHeader(header);
+        if (authHeader != null && authHeader.startsWith(tokenHead)) {
             // The part after "Bearer "
             final String authToken = authHeader.substring(tokenHead.length());
             //根据token获取用户名
@@ -52,7 +54,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 logger.warn("the token is expired and not valid anymore", e);
             }
             log.info("checking authentication " + username);
-            if(username!=null&& SecurityContextHolder.getContext().getAuthentication()==null){
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
                 if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
@@ -64,6 +66,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 }
             }
         }
-        chain.doFilter(request,response);
+        chain.doFilter(request, response);
     }
 }

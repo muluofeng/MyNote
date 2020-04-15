@@ -24,7 +24,7 @@ public class TestHibernateRefreshAndMerge {
         EmployeeEntity emp = new EmployeeEntity();
         emp.setFirstName("Lokesh");
         emp.setLastName("Gupta");
-        emp.setEmail(Math.random()+"Gupta@qq.com");
+        emp.setEmail(Math.random() + "Gupta@qq.com");
 
         //Save employee
         sessionOne.save(emp);
@@ -68,11 +68,12 @@ public class TestHibernateRefreshAndMerge {
 
     /**
      * 验证 该id的数据的名字和传入的是否一致
+     *
      * @param employeeId
      * @param firstName
      * @return
      */
-    private static boolean verifyEmployeeFirstName(Integer employeeId, String firstName){
+    private static boolean verifyEmployeeFirstName(Integer employeeId, String firstName) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         EmployeeEntity employee = (EmployeeEntity) session.load(EmployeeEntity.class, employeeId);
         //Verify first name

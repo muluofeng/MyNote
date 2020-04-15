@@ -32,8 +32,6 @@ public class ProxyMain {
         generateClassFile(person1.getClass(), "PersonProxy");
 
 
-
-
         //2. 使用 cglib动态代理,不能代理final类型,如果person为final，就不能代理了
         CGLibProxy cgLibProxy = new CGLibProxy();
         Animal bind = (Animal) cgLibProxy.bind(new Person());

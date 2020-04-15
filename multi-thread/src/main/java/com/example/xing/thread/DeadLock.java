@@ -18,7 +18,7 @@ public class DeadLock {
 //        b.start();
 
         //打印文件夹下的目录
-        printDir(new File("/Users/xing/workspaces/java/MyNote/multi-thread"),0);
+        printDir(new File("/Users/xing/workspaces/java/MyNote/multi-thread"), 0);
     }
 
     private static void printDir(File file, int level) {
@@ -33,7 +33,7 @@ public class DeadLock {
                 for (int i = 0; i < level; i++) {
                     System.out.printf("-");
                 }
-                printDir(f,level);
+                printDir(f, level);
             }
         } else {
             System.out.println(file.getName());

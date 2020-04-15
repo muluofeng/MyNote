@@ -10,5 +10,5 @@ public class RoleKeys {
     //管理员权限
     public static final String ADMIN = "ADMIN";
     //普通用户
-    public static final String USER  = "USER";
+    public static final String USER = "USER";
 }

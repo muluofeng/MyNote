@@ -1,6 +1,7 @@
 package com.example.xing;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 
 /**
@@ -11,7 +12,7 @@ import java.io.Serializable;
 @org.hibernate.annotations.Entity()
 @Table(name = "Employee", uniqueConstraints = {
         @UniqueConstraint(columnNames = "ID"),
-        @UniqueConstraint(columnNames = "EMAIL") })
+        @UniqueConstraint(columnNames = "EMAIL")})
 public class EmployeeEntity implements Serializable {
 
     private static final long serialVersionUID = -1798070786993154676L;
@@ -34,7 +35,6 @@ public class EmployeeEntity implements Serializable {
 //    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JoinColumn(name="EMPLOYEE_ID")
 //    private Set<AccountEntity> accounts;
-
 
 
     public Integer getEmployeeId() {

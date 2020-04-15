@@ -16,10 +16,10 @@ public class Test {
         map.put("python", 3);
         map.put("php", 4);
         map.put("nodejs", 5);
-        for(Map.Entry<String, Integer> entry : map.entrySet()) {
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
         System.out.println("php".hashCode() == "c++".hashCode());
-        System.out.println("php".hashCode() );
+        System.out.println("php".hashCode());
     }
 }

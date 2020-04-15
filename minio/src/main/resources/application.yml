@@ -1,0 +1,7 @@
+# 文件系统
+minio:
+  url: http:://106.54.237.135:9000
+  access-key: minio
+  secret-key: miniostorage
+  bucket-name: test
+

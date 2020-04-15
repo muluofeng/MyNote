@@ -17,8 +17,10 @@ import org.springframework.util.StringValueResolver;
 @Component
 public class MyAware implements ApplicationContextAware, BeanNameAware, EmbeddedValueResolverAware {
     ApplicationContext applicationContext;
+
     /**
      * 获取当前bean注册到容器的name
+     *
      * @param name
      */
     @Override
@@ -28,6 +30,7 @@ public class MyAware implements ApplicationContextAware, BeanNameAware, Embedded
 
     /**
      * 获取ioc容器
+     *
      * @param applicationContext
      * @throws BeansException
      */

@@ -8,5 +8,5 @@ public interface Mouse {
     /**
      * 点击鼠标
      */
-     void click();
+    void click();
 }

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,11 +22,11 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String  username;
-    private String  password;
+    private String username;
+    private String password;
     private Boolean locked;
-    private String  salt;
+    private String salt;
     @Column(name = "lastpasswordresetdate")
-    private Date    lastPasswordResetDate;
+    private Date lastPasswordResetDate;
 
 }

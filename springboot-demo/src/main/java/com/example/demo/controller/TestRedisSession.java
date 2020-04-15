@@ -24,7 +24,7 @@ public class TestRedisSession {
         HashMap<String, Object> map = new HashMap<>();
         map.put("id", UUID.randomUUID().toString());
         map.put("username", username);
-        map.put("sex",1);
+        map.put("sex", 1);
         request.getSession().setAttribute("username", map);
         return request.getSession();
     }

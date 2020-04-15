@@ -16,16 +16,16 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@ApiModel(value="菜单列表对象")
+@ApiModel(value = "菜单列表对象")
 public class MenuDTO implements Serializable {
 
-    @ApiModelProperty(value="路径",name="path")
+    @ApiModelProperty(value = "路径", name = "path")
     private String path;
-    @ApiModelProperty(value="名字",name="name")
+    @ApiModelProperty(value = "名字", name = "name")
     private String name;
-    @ApiModelProperty(value="组件",name="component")
+    @ApiModelProperty(value = "组件", name = "component")
     private String component;
-    @ApiModelProperty(value="目标对象",name="meta")
+    @ApiModelProperty(value = "目标对象", name = "meta")
     private Meta meta;
     @JsonIgnoreProperties(value = {"children"})
     private List<MenuDTO> children;

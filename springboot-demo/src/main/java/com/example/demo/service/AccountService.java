@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.AccountDAO;
 import com.example.demo.entity.Account;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -66,7 +67,8 @@ public class AccountService {
     }
 
     /**
-     *  添加事务的方法
+     * 添加事务的方法
+     *
      * @param account
      * @return
      * @throws Exception
@@ -82,7 +84,8 @@ public class AccountService {
 
 
     /**
-     *  Propagation.MANDATORY  使用当前的事务，如果当前没有事务，就抛出异常。
+     * Propagation.MANDATORY  使用当前的事务，如果当前没有事务，就抛出异常。
+     *
      * @param account
      * @return
      * @throws Exception
@@ -95,7 +98,8 @@ public class AccountService {
 
 
     /**
-     *  Propagation.NEVER  以非事务方式执行，如果当前存在事务，则抛出异常
+     * Propagation.NEVER  以非事务方式执行，如果当前存在事务，则抛出异常
+     *
      * @param account
      * @return
      * @throws Exception
@@ -105,8 +109,6 @@ public class AccountService {
         Account save = dao.save(account);
         return save;
     }
-
-
 
 
 }

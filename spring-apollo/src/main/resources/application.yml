@@ -1,0 +1,8 @@
+app:
+  id: demo-xxx
+apollo:
+  meta: http://106.12.25.204:8080
+  bootstrap:
+    enabled: true
+
+

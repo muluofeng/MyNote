@@ -1,6 +1,7 @@
 package com.example.xing.config;
 
 import com.example.xing.DBConstant;
+
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;

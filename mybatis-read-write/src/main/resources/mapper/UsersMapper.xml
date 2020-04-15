@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.readwrite.dao.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.example.readwrite.entity.Users">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="passWord" jdbcType="VARCHAR" property="password" />
+    <result column="user_sex" jdbcType="BOOLEAN" property="userSex" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, userName, `passWord`, user_sex, nick_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from users
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.readwrite.entity.Users">
+    <!--@mbg.generated-->
+    insert into users (id, userName, `passWord`, 
+      user_sex, nick_name)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=BOOLEAN}, #{nickName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.readwrite.entity.Users">
+    <!--@mbg.generated-->
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="password != null">
+        `passWord`,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=BOOLEAN},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.readwrite.entity.Users">
+    <!--@mbg.generated-->
+    update users
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `passWord` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=BOOLEAN},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.readwrite.entity.Users">
+    <!--@mbg.generated-->
+    update users
+    set userName = #{username,jdbcType=VARCHAR},
+      `passWord` = #{password,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=BOOLEAN},
+      nick_name = #{nickName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

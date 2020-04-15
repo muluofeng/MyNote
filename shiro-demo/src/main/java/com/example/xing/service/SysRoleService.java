@@ -11,7 +11,7 @@ import com.example.xing.entity.SysRole;
  * @email mail@chenxing.vip
  * @date 2019-01-01 01:57:07
  */
-public interface SysRoleService extends BaseService<SysRole,Long, SysRoleDao> {
+public interface SysRoleService extends BaseService<SysRole, Long, SysRoleDao> {
 
 }
 

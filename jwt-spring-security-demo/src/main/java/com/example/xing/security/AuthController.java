@@ -1,6 +1,7 @@
 package com.example.xing.security;
 
 import com.example.xing.dto.RegisterUserDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

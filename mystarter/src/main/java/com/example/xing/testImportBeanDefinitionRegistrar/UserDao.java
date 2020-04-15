@@ -8,5 +8,5 @@ import com.example.xing.testImportBeanDefinitionRegistrar.annotation.Select;
  */
 public interface UserDao {
     @Select(value = "select * from xxx")
-    public void  getUserList();
+    public void getUserList();
 }

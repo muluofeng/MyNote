@@ -1,8 +1,10 @@
 package com.example.xing.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,12 +18,12 @@ import java.util.Date;
 @Setter
 @Getter
 public class JwtUser implements UserDetails {
-    private final String                                 username;
-    private final String                                 password;
+    private final String username;
+    private final String password;
     private final Collection<? extends GrantedAuthority> authorities;
     // 最后更新密码的时间
-    private final Date                                   lastPasswordResetDate;
-    private       Boolean                                lock;
+    private final Date lastPasswordResetDate;
+    private Boolean lock;
 
     public JwtUser(
             String username,

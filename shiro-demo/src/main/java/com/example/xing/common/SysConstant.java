@@ -18,5 +18,4 @@ public class SysConstant {
     public static final Long SUPER_ROLE_ID = new Long(1);
 
 
-
 }

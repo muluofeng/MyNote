@@ -46,7 +46,7 @@ public class Consumer {
                             } else {
                                 set.add(msgId);
                             }
-                            System.out.println(msgId + "--" + new String(ext.getBody(), "UTF-8") + "---"+sendNums);
+                            System.out.println(msgId + "--" + new String(ext.getBody(), "UTF-8") + "---" + sendNums);
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }

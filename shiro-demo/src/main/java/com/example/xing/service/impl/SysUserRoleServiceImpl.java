@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service("sysUserRoleService")
-public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRole,Long, SysUserRoleDao> implements SysUserRoleService {
+public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRole, Long, SysUserRoleDao> implements SysUserRoleService {
 
 
 }

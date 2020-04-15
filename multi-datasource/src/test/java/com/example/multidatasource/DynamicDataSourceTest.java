@@ -20,8 +20,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class DynamicDataSourceTest {
     @Autowired
     private DataSourceTestService dataSourceTestService;
+
     @Test
-    public void test(){
+    public void test() {
         //数据源1
         User user = dataSourceTestService.findUser(1L);
         System.out.println(user.getUsername());
@@ -32,5 +33,6 @@ public class DynamicDataSourceTest {
         System.out.println(signin.getDate());
 
     }
+
 
 }

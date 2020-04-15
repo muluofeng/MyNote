@@ -14,7 +14,7 @@ import lombok.Setter;
 
 /**
  * 角色与菜单对应关系
- * 
+ *
  * @author chenxing
  * @email mail@chenxing.vip
  * @date 2019-01-01 02:13:23
@@ -24,24 +24,24 @@ import lombok.Setter;
 @Entity
 @Table(name = "tb_sys_role_menu")
 public class SysRoleMenu implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	@Id
+    /**
+     *
+     */
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	/**
-	 * 角色ID
-	 */
-	@Column(name = "role_id")
-	private Long roleId;
-	/**
-	 * 菜单ID
-	 */
-	@Column(name = "menu_id")
-	private Long menuId;
+    private Long id;
+    /**
+     * 角色ID
+     */
+    @Column(name = "role_id")
+    private Long roleId;
+    /**
+     * 菜单ID
+     */
+    @Column(name = "menu_id")
+    private Long menuId;
 
 
 }

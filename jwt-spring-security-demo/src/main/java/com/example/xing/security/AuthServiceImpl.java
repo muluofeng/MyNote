@@ -2,6 +2,7 @@ package com.example.xing.security;
 
 import com.example.xing.dao.UserDAO;
 import com.example.xing.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,11 +21,11 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
-    private UserDetailsService    userDetailsService;
+    private UserDetailsService userDetailsService;
     @Autowired
-    private UserDAO               userRepository;
+    private UserDAO userRepository;
     @Autowired
-    private JwtTokenUtil          jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
 
 
     @Override

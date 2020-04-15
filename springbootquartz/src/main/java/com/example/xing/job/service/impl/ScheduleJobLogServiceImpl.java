@@ -17,13 +17,13 @@ import java.util.Map;
 @Service("scheduleJobLogService")
 public class ScheduleJobLogServiceImpl extends ServiceImpl<ScheduleJobLogDao, ScheduleJobLogEntity> implements ScheduleJobLogService {
 
-	@Override
-	public PageUtils queryPage(Map<String, Object> params) {
-		String jobId = (String) params.get("jobId");
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        String jobId = (String) params.get("jobId");
 
-		Page<ScheduleJobLogEntity> page = this.selectPage(new Query<ScheduleJobLogEntity>(params).getPage(), new EntityWrapper<ScheduleJobLogEntity>().like(StringUtils.isNotBlank(jobId), "job_id", jobId));
+        Page<ScheduleJobLogEntity> page = this.selectPage(new Query<ScheduleJobLogEntity>(params).getPage(), new EntityWrapper<ScheduleJobLogEntity>().like(StringUtils.isNotBlank(jobId), "job_id", jobId));
 
-		return new PageUtils(page);
-	}
+        return new PageUtils(page);
+    }
 
 }

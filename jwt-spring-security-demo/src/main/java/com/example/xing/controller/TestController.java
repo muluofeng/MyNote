@@ -15,14 +15,14 @@ public class TestController {
     @ResponseBody
     @RequestMapping("/needAdmin")
     @PreAuthorize("hasRole('ADMIN')")
-    public String testAdmin(){
+    public String testAdmin() {
         return "need admin role";
     }
 
     @ResponseBody
     @RequestMapping("/needUser")
     @PreAuthorize("hasRole('USER')")
-    public String testUser(){
+    public String testUser() {
         return "need user role";
     }
 }

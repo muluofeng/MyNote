@@ -13,7 +13,7 @@ public class TestRedis {
     @Autowired
     AccountServiceTestCache accountServiceTestCache;
 
-    public Object findAll(){
-       return  accountServiceTestCache.findAll();
+    public Object findAll() {
+        return accountServiceTestCache.findAll();
     }
 }

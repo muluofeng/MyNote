@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.xing</groupId>
     <artifactId>parent-project</artifactId>
@@ -11,24 +12,61 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
-
-
 
 
     <name>xing</name>
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>multi-tenant-demo</module>
-        <module>springboot-demo</module>
-        <module>hibernate</module>
-        <module>rocketMQ</module>
-        <module>workflow</module>
+        <!--设计模式学习-->
+        <module>designpattern</module>
+        <!--guava 学习-->
         <module>guava-demo</module>
-        <module>shiro-demo</module>
+        <!-- hibnate 学习-->
+        <module>hibernate</module>
+        <!--jwt 学习-->
         <module>jwt-spring-security-demo</module>
+        <!--多租户学习-->
+        <module>multi-tenant-demo</module>
+        <!--springboot demo学习-->
+        <module>springboot-demo</module>
+        <!--rocketMQ 学习   -->
+        <module>rocketMQ</module>
+        <!--activemq 学习   -->
+        <module>active-mq</module>
+        <!-- 工作流学习-->
+        <module>workflow</module>
+        <!-- shiro 学习-->
+        <module>shiro-demo</module>
+        <!-- apollo 配置中心 学习-->
+        <module>spring-apollo</module>
+        <!-- quartz  学习-->
+        <module>springbootquartz</module>
+
+
+
+        <!--多线程 -->
+        <module>multi-thread</module>
+        <!-- 多数据源  学习-->
+        <module>multi-datasource</module>
+        <module>multi-datasource2</module>
+
+
+
+        <!--    mycat 学习    -->
+        <module>mycat-springboot</module>
+
+        <!--    自定义starter 学习    -->
+        <module>mystarter</module>
+        <module>mybatis-stater</module>
+        <module>springboot-demo</module>
+        <module>jackson</module>
+        <module>minio</module>
+        <module>rabbit-mq</module>
+        <module>mybatis-read-write</module>
+
 
     </modules>
 

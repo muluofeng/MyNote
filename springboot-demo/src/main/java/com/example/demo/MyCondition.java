@@ -16,7 +16,7 @@ public class MyCondition implements Condition {
         Environment environment = context.getEnvironment();
         String property = environment.getProperty("os.name");
 //        System.out.println(property);
-        if(property.equals("Mac OS X")){
+        if (property.equals("Mac OS X")) {
             return false;
         }
         return false;

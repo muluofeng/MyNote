@@ -15,8 +15,8 @@ public class Test {
         System.out.println("TOTAL_MEMORY = " + totalMemory + " （字节）" + (totalMemory / (double) 1024 / 1024) + "MB"); //总的内存
 
         String str = "xxx";
-        while (true){
-            str+=str+new Random().nextInt(2222222);
+        while (true) {
+            str += str + new Random().nextInt(2222222);
         }
     }
 }

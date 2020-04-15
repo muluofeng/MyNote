@@ -2,10 +2,12 @@ package com.example.xing.config;
 
 import com.example.xing.DBConstant;
 import com.example.xing.UrlUtils;
+
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.IOException;
 
 /**
@@ -26,7 +28,7 @@ public class MultiTenantFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        HttpServletRequest req = (HttpServletRequest)request;
+        HttpServletRequest req = (HttpServletRequest) request;
         String path = req.getServletPath();
         //获得域名
         String serverName = request.getServerName();

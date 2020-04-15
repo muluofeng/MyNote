@@ -9,10 +9,10 @@ import java.util.concurrent.TimeUnit;
  * @Created by 2019-07-14 15:31.
  */
 public class CyclicBarrierTest {
-    static CyclicBarrier cyclicBarrier = new CyclicBarrier(3,() -> {
+    static CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> {
         try {
             TimeUnit.MILLISECONDS.sleep(2000);
-            System.out.println(Thread.currentThread().getName()+"--所有任务执行完了...");
+            System.out.println(Thread.currentThread().getName() + "--所有任务执行完了...");
 
         } catch (InterruptedException e) {
             e.printStackTrace();

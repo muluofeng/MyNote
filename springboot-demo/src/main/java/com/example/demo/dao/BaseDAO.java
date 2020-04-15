@@ -10,5 +10,5 @@ import java.io.Serializable;
  * @Created by 2018-12-07 6:56 PM.
  */
 @NoRepositoryBean
-public interface BaseDAO<T, ID extends Serializable> extends JpaRepository<T,ID> {
+public interface BaseDAO<T, ID extends Serializable> extends JpaRepository<T, ID> {
 }

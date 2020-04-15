@@ -10,6 +10,7 @@ public class StaticFactory {
 
     /**
      * 简单工厂  根据参数类型，产生不同的对象
+     *
      * @param type
      * @return
      */

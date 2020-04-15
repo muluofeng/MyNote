@@ -9,8 +9,9 @@ public class APIResponse<T> {
     private String message;
     private T data;
     private int code;
-    public APIResponse success(){
+
+    public APIResponse success() {
         this.code = 200;
-        return  this;
+        return this;
     }
 }

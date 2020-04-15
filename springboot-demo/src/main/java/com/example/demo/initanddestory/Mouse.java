@@ -6,10 +6,11 @@ package com.example.demo.initanddestory;
  */
 public class Mouse {
 
-    public void init(){
+    public void init() {
         System.out.println("Mouse init");
     }
-    public void destroy(){
+
+    public void destroy() {
         System.out.println("Mouse destroy");
     }
 }

@@ -37,9 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-
     /**
      * 添加jwt过滤器
+     *
      * @param http
      * @throws Exception
      */
@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     /**
-     *  忽略的url
+     * 忽略的url
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -67,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 //忽略授权api
                 .ignoring().antMatchers(
-                        HttpMethod.POST, "/"+authenticationPath)
+                HttpMethod.POST, "/" + authenticationPath)
                 .and()
                 //忽略静态文件
                 .ignoring().antMatchers(

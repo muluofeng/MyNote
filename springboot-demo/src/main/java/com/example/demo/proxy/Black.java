@@ -6,5 +6,5 @@ package com.example.demo.proxy;
  */
 public class Black extends Color {
 
-    public String name ="black";
+    public String name = "black";
 }

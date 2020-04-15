@@ -42,7 +42,7 @@ public class MyAspects {
 
     }
 
-    @AfterThrowing( value = "pointcut()")
+    @AfterThrowing(value = "pointcut()")
     public void AfterThrowing() {
         System.out.println("MyAspects  AfterThrowing");
 

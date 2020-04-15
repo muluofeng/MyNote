@@ -32,7 +32,6 @@ public class SysLoginController {
     private UserRealm userRealm;
 
 
-
     /**
      * 登录
      */
@@ -81,7 +80,7 @@ public class SysLoginController {
      * 退出
      */
     @ResponseBody
-    @RequestMapping(value = "logout",method = RequestMethod.POST)
+    @RequestMapping(value = "logout", method = RequestMethod.POST)
     public R logout() {
         ShiroUtils.logout();
         return R.ok("退出成功");

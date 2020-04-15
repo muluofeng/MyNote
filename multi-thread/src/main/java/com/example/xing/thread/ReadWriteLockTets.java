@@ -20,7 +20,7 @@ public class ReadWriteLockTets {
     private static void testReadWriteLock() {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         ReadWriteLock lock = new ReentrantReadWriteLock();
-        Map<String, Object>  map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
 
         Runnable task = () -> {
@@ -56,7 +56,7 @@ public class ReadWriteLockTets {
             try {
                 System.out.println(map.get("a"));
 
-            }  finally {
+            } finally {
                 lock.readLock().unlock();
             }
         };

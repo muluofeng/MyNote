@@ -128,7 +128,6 @@
         </dependency>
 
 
-
         <!--基于Spring boot 2.1 使用redisson实现分布式锁-->
         <dependency>
             <groupId>org.redisson</groupId>
@@ -141,6 +140,28 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>3.2.6</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.101tec/zkclient -->
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.10</version>
+        </dependency> <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.4.9</version>
+        </dependency>
+
+
+        <!--minio文件系统-->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>6.0.2</version>
         </dependency>
 
 

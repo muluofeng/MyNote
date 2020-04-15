@@ -20,7 +20,7 @@ public class BroadcastProducer {
             String Tag = i % 2 == 0 ? "TagA" : "TagB";
             Message msg = new Message("TopicTest",
                     Tag,
-                    "OrderID"+i,
+                    "OrderID" + i,
                     "Hello world".getBytes(RemotingHelper.DEFAULT_CHARSET));
             SendResult sendResult = producer.send(msg);
             System.out.printf("%s%n", sendResult);

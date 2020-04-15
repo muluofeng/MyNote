@@ -64,10 +64,10 @@ public class Md5DigestUtils {
 
 
     public static void main(String[] args) {
-        String phone ="14739999788";
-        String salt =generatorSalt();
+        String phone = "14739999788";
+        String salt = generatorSalt();
         System.out.println(salt);
-        System.out.println(getMd5Str("123",salt));
+        System.out.println(getMd5Str("123", salt));
     }
 
 }

@@ -9,6 +9,7 @@ import com.example.xing.model.User;
 public interface AuthService {
     /**
      * 注册一个用户
+     *
      * @param userToAdd
      * @return
      */
@@ -21,6 +22,7 @@ public interface AuthService {
 
     /**
      * 刷新
+     *
      * @param oldToken
      * @return
      */

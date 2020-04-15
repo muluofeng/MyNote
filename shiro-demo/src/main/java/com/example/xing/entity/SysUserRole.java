@@ -24,24 +24,24 @@ import lombok.Setter;
 @Entity
 @Table(name = "tb_sys_user_role")
 public class SysUserRole implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 *
-	 */
-	@Id
+    /**
+     *
+     */
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	/**
-	 * 用户ID
-	 */
-	@Column(name = "user_id")
-	private Long userId;
-	/**
-	 * 角色ID
-	 */
-	@Column(name = "role_id")
-	private Long roleId;
+    private Long id;
+    /**
+     * 用户ID
+     */
+    @Column(name = "user_id")
+    private Long userId;
+    /**
+     * 角色ID
+     */
+    @Column(name = "role_id")
+    private Long roleId;
 
 
 }

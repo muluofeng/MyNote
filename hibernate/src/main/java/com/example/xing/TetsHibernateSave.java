@@ -21,7 +21,7 @@ public class TetsHibernateSave {
         EmployeeEntity emp = new EmployeeEntity();
         emp.setFirstName("Lokesh");
         emp.setLastName("Gupta");
-        emp.setEmail(Math.random()+"xxx@qq.com");
+        emp.setEmail(Math.random() + "xxx@qq.com");
 
         //Save employee
         sessionOne.save(emp);
@@ -35,7 +35,7 @@ public class TetsHibernateSave {
         Session sessionTwo = HibernateUtil.getSessionFactory().openSession();
         sessionTwo.beginTransaction();
 
-        EmployeeEntity employee = ( EmployeeEntity ) sessionTwo.load(EmployeeEntity.class, id );
+        EmployeeEntity employee = (EmployeeEntity) sessionTwo.load(EmployeeEntity.class, id);
         System.out.println(employee.getLastName());  //temp
 
         sessionTwo.getTransaction().commit();

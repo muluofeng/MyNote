@@ -27,6 +27,7 @@ public class Producer {
             public void onFailure(Throwable ex) {
                 System.out.println("消息：{} 发送失败，原因：" + message + ex.getMessage());
             }
+
             @Override
             public void onSuccess(SendResult<String, String> result) {
                 RecordMetadata recordMetadata = result.getRecordMetadata();

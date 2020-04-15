@@ -27,7 +27,7 @@ public class KafkaTest {
 
     @Test
     public void testProducer() {
-        producer.sendChannelMess("test13","测试发送数据");
+        producer.sendChannelMess("test13", "测试发送数据");
 
     }
 

@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
  * @author xiexingxing
  * @Created by 2019-07-30 19:21.
  */
-public  class MyJdkProxy implements InvocationHandler {
+public class MyJdkProxy implements InvocationHandler {
 
     Object obj;
 
