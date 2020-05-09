@@ -61,11 +61,11 @@
         <!--    自定义starter 学习    -->
         <module>mystarter</module>
         <module>mybatis-stater</module>
-        <module>springboot-demo</module>
         <module>jackson</module>
         <module>minio</module>
         <module>rabbit-mq</module>
         <module>mybatis-read-write</module>
+        <module>netty</module>
 
 
     </modules>

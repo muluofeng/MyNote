@@ -13,7 +13,7 @@ public class RabbitConfig {
 
     @Bean
     public Queue Queue() {
-        return new Queue("hello");
+        return new Queue("test");
     }
 
 }

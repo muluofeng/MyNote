@@ -40,7 +40,6 @@ public class DynamicDataSourcePlugin implements Interceptor {
 
     private static final Map<String, DynamicDataSourceHolder.MyDataSource> cacheMap = new ConcurrentHashMap<>();
 
-//    [@Override](https://my.oschina.net/u/1162528)
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         // 判断是否是数据库事务
@@ -79,7 +78,6 @@ public class DynamicDataSourcePlugin implements Interceptor {
         return invocation.proceed();
     }
 
-//    [@Override](https://my.oschina.net/u/1162528)
     @Override
     public Object plugin(Object target) {
         if (target instanceof Executor) {

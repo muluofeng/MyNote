@@ -23,7 +23,10 @@ server:
 
 spring:
   rabbitmq:
-    addresses: 47.96.76.126:5672,106.54.237.135:5672
-#    addresses: 47.96.76.126:5672
-    username: admin
-    password: 123456
+#    addresses: 47.96.76.126:5672,106.54.237.135:5672
+##    addresses: 47.96.76.126:5672
+#    username: admin
+#    password: 123456
+    username: jiaojun
+    password: jiaojun123
+    addresses: 10.18.44.244:5672,10.18.44.244:5672,10.18.44.244:5672
