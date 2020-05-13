@@ -66,6 +66,8 @@
         <module>rabbit-mq</module>
         <module>mybatis-read-write</module>
         <module>netty</module>
+        <module>learnspring</module>
+        <module>redisresubmit</module>
 
 
     </modules>
