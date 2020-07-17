@@ -27,6 +27,20 @@ public class CyclicBarrierTest {
         b.start();
         c.start();
 
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        MyThread e = new MyThread("E", cyclicBarrier);
+        MyThread f = new MyThread("F", cyclicBarrier);
+        MyThread g = new MyThread("G", cyclicBarrier);
+        e.start();
+        f.start();
+        g.start();
+
     }
 
     static class MyThread extends Thread {
@@ -47,6 +61,12 @@ public class CyclicBarrierTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (BrokenBarrierException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                sleep(3000);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 

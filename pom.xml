@@ -68,6 +68,7 @@
         <module>netty</module>
         <module>learnspring</module>
         <module>redisresubmit</module>
+        <module>getwaymanager</module>
 
 
     </modules>

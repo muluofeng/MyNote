@@ -1,6 +1,7 @@
 package com.example.xing.thread;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author xiexingxing
@@ -17,7 +18,7 @@ public class CountDownLatchTest {
         thread2.start();
         thread3.start();
 
-        System.out.println("等待3个子线程执行完毕...");
+        System.out.println("等待1,2,3个子线程执行完毕...");
         try {
             countDownLatch.await();
             System.out.println("开始执行自己的任务...");
@@ -25,6 +26,33 @@ public class CountDownLatchTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        try {
+            TimeUnit.SECONDS.sleep(8);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
+//       模拟复用 ，countDownLatch 不能复用
+//        MyThread thread4 = new MyThread("线程4");
+//        MyThread thread5 = new MyThread("线程5");
+//        MyThread thread6 = new MyThread("线程6");
+//        thread4.start();
+//        thread5.start();
+//        thread6.start();
+//
+//        System.out.println("等待4,5,6个子线程执行完毕...");
+//        try {
+//            countDownLatch.await();
+//            System.out.println("开始执行自己的任务...");
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+
     }
 
     static class MyThread extends Thread {

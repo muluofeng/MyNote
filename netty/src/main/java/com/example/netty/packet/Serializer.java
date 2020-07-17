@@ -9,7 +9,7 @@ public interface Serializer {
     /**
      * json 序列化
      */
-    byte JSON_SERIALIZER = 1;
+    byte JSON_SERIALIZER = SerializerAlgorithm.JSON;
 
     Serializer DEFAULT = new JSONSerializer();
 
