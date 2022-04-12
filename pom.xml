@@ -75,6 +75,7 @@
         <module>learnspring</module>
         <module>redisresubmit</module>
         <module>getwaymanager</module>
+        <module>javaBasic</module>
 
 
     </modules>
