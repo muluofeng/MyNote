@@ -1,78 +1,95 @@
 package com.example.debezium.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.debezium.engine.ChangeEvent;
+import io.debezium.data.Envelope;
 import io.debezium.engine.DebeziumEngine;
-import lombok.RequiredArgsConstructor;
+import io.debezium.engine.RecordChangeEvent;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.kafka.connect.data.Field;
+import org.apache.kafka.connect.data.Struct;
+import org.apache.kafka.connect.source.SourceRecord;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static io.debezium.data.Envelope.FieldName.AFTER;
+import static io.debezium.data.Envelope.FieldName.BEFORE;
+import static io.debezium.data.Envelope.FieldName.OPERATION;
+import static io.debezium.data.Envelope.FieldName.SOURCE;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * @author xiexingxing
- * @date 2023/1/7 9:36 PM
+ * @date 2023/3/23 9:00 PM
  */
 @Slf4j
-@Component
-@RequiredArgsConstructor
-public class ChangeEventConsumer implements DebeziumEngine.ChangeConsumer<ChangeEvent<String, String>> {
+public class ChangeEventConsumer implements DebeziumEngine.ChangeConsumer<RecordChangeEvent<SourceRecord>> {
 
-    private final ObjectMapper objectMapper;
-
+    private  AtomicInteger num  = new AtomicInteger(0);
     @SneakyThrows
     @Override
-    public void handleBatch(List<ChangeEvent<String, String>> list,
-            DebeziumEngine.RecordCommitter<ChangeEvent<String, String>> committer) throws InterruptedException {
+    public void handleBatch(List<RecordChangeEvent<SourceRecord>> list,
+            DebeziumEngine.RecordCommitter<RecordChangeEvent<SourceRecord>> recordCommitter) throws InterruptedException {
         try {
-            for (int i = 0; i <list.size(); i++) {
-                ChangeEvent<String, String> record =  list.get(i);
-                log.info("第{},接收到：{}",i,record);
-//                if (Objects.nonNull(record.value())) {
-//                    ValueStruct value = objectMapper.readValue(record.value(), ValueStruct.class);
-//
-//                    String table = Optional.ofNullable(value).map(v -> v.getPayload()).map(p -> p.getSource()).map(s -> s.getTable()).orElse(null);
-//                    String op = Optional.ofNullable(value).map(v -> v.getPayload()).map(p -> p.getOp()).orElse(null);
-//                    if (StringUtils.isNotBlank(op)) {
-//                        log.info("表:{},操作类型:{}", table, op);
-//
-//                        Envelope.Operation operation = Envelope.Operation.forCode(op);
-//                        switch (operation) {
-//                            case CREATE:
-//                                Optional.ofNullable(value).map(v -> v.getPayload()).ifPresent(x -> {
-//                                    Map<String, Object> after = x.getAfter();
-//                                    log.info("创建之后的数据:{}", after);
-//                                });
-//                                break;
-//                            case UPDATE:
-//                                Optional.ofNullable(value).map(v -> v.getPayload()).ifPresent(x -> {
-//                                    Map<String, Object> after = x.getAfter();
-//                                    log.info("更新之后的数据:{}", after);
-//                                });
-//                                break;
-//                            case DELETE:
-//                                Optional.ofNullable(value).map(v -> v.getPayload()).ifPresent(x -> {
-//                                    Map<String, Object> before = x.getBefore();
-//                                    log.info("删除之前的数据:{}", before);
-//                                });
-//                                break;
-//                            case READ:
-//                                break;
-//                            default:
-//                                ;
-//                        }
-//                    }
-//                }
+            log.info("handleBatch size:{}",list.size());
+            for (int i = 0; i < list.size(); i++) {
+                RecordChangeEvent<SourceRecord> r = list.get(i);
+                SourceRecord sourceRecord = r.record();
+                log.info(sourceRecord.toString());
+                Struct sourceRecordChangeValue = (Struct) sourceRecord.value();
 
-                // calling for each record
-                committer.markProcessed(record);
+                if (sourceRecordChangeValue != null) {
+                    // 判断操作的类型 过滤掉读 只处理增删改   这个其实可以在配置中设置
+                    Field ddlField = sourceRecordChangeValue.schema().field("ddl");
+                    if (Objects.nonNull(ddlField)) {
+                        //暂时不处理ddl
+                        markProcessed(recordCommitter, r);
+                        continue;
+                    }
+                    Envelope.Operation operation = Envelope.Operation.forCode((String) sourceRecordChangeValue.get(OPERATION));
+
+                    if (operation != Envelope.Operation.READ) {
+
+                        String record = operation == Envelope.Operation.DELETE ? BEFORE : AFTER;
+                        // 获取增删改对应的结构体数据
+                        Struct struct = (Struct) sourceRecordChangeValue.get(record);
+
+                        Struct source = (Struct) sourceRecordChangeValue.get(SOURCE);
+                        Map<String, Object> sources = source.schema().fields().stream().map(Field::name)
+                                .filter(fieldName -> source.get(fieldName) != null).map(fieldName -> Pair.of(fieldName, source.get(fieldName)))
+                                .collect(toMap(Pair::getKey, Pair::getValue));
+
+                        Map<String, Object> payload = struct.schema().fields().stream().map(Field::name)
+                                .filter(fieldName -> struct.get(fieldName) != null).map(fieldName -> Pair.of(fieldName, struct.get(fieldName)))
+                                .collect(toMap(Pair::getKey, Pair::getValue));
+                        // 这里简单打印一下
+                        String name = struct.schema().name();
+                        log.info("operation = " + operation.name());
+                        log.info("payload = " + payload);
+                        log.info("db.table = " + sources.get("db") +"." + sources.get("table"));
+
+                        markProcessed(recordCommitter, r);
+                    } else {
+                        //读取数据
+                    }
+                }
+
             }
-            // calling when this batch is finished
-            committer.markBatchFinished();
         } catch (Exception e) {
-            log.error("处理异常", e);
+            log.error("handleBatch error", e);
         }
+        recordCommitter.markBatchFinished();
+    }
 
+    private static void markProcessed(DebeziumEngine.RecordCommitter<RecordChangeEvent<SourceRecord>> recordCommitter,
+            RecordChangeEvent<SourceRecord> r) {
+        try {
+            recordCommitter.markProcessed(r);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
